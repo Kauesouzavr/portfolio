@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEMO 4 — Kauê Souza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="demo-badge">DEMO 4 — estilo da referência (sem grade, letra grossa, dark/light)</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Kauê Souza</div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro">
+      <i class="fa-solid fa-sun" id="themeIcon"></i>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <a href="#" class="badge" id="badge"><i class="fa-solid fa-star"></i> Disponível para novos projetos <i class="fa-solid fa-arrow-right"></i></a>
+    <h1 id="heading">Kauê Souza</h1>
+    <p class="subtext" id="subtext">Suporte de TI, Infraestrutura e automação com Python, SQL e IA — pronto para novos desafios remotos.</p>
+    <div class="pills" id="pills">
+      <a href="#" class="pill pill-green"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      <a href="#" class="pill pill-blue"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="#" class="pill pill-purple"><i class="fa-brands fa-github"></i> GitHub</a>
+    </div>
+    <div class="tech-row" id="techRow">
+      <div class="tech-badge"><i class="fa-brands fa-python"></i></div>
+      <div class="tech-badge"><i class="fa-solid fa-database"></i></div>
+      <div class="tech-badge"><i class="fa-solid fa-network-wired"></i></div>
+      <div class="tech-badge"><i class="fa-solid fa-brain"></i></div>
+    </div>
+  </div>
+  <div class="hero-visual" id="heroVisual">
+    <div id="rocket"></div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="about-inner">
+    <div class="about-head">
+      <h2 id="aboutHeading">Sobre mim</h2>
+      <p class="about-subtitle"><i class="fa-solid fa-star"></i> Sistemas que não caem, dados que fazem sentido <i class="fa-solid fa-star"></i></p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="about-greeting">Olá, eu sou</p>
+        <h3 class="about-name">Kauê Souza</h3>
+        <p class="about-bio">Atuo onde usuários e sistemas se encontram: suporte técnico, infraestrutura e a garantia de que tudo continue de pé. Esse olhar analítico tem migrado cada vez mais para dados — usando Python e SQL para automatizar processos manuais, com IA entrando cada vez mais nesse fluxo de trabalho.</p>
+        <div class="about-actions">
+          <a href="#" class="btn btn-primary"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+          <a href="#" class="btn btn-ghost"><i class="fa-solid fa-code"></i> Ver Projetos</a>
+        </div>
+      </div>
+      <div class="about-photo-wrap">
+        <div class="photo-ring"></div>
+        <img class="about-photo" alt="Foto de Kauê Souza" src="assets/foto-kaue.jpg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="highlights" id="destaques">
+  <div class="highlights-inner">
+    <div class="highlights-row row-3">
+      <div class="hcard">
+        <div class="hcard-top">
+          <div class="hcard-icon"><i class="fa-solid fa-code"></i></div>
+          <span class="hcard-number">1</span>
+        </div>
+        <h3>Projeto em Destaque</h3>
+        <p>Plataforma de apostas em produção</p>
+        <i class="fa-solid fa-arrow-up-right-from-square hcard-arrow"></i>
+      </div>
+      <div class="hcard">
+        <div class="hcard-top">
+          <div class="hcard-icon"><i class="fa-solid fa-headset"></i></div>
+          <span class="hcard-number">24h</span>
+        </div>
+        <h3>Tempo de Resposta</h3>
+        <p>Suporte ágil e direto</p>
+        <i class="fa-solid fa-arrow-up-right-from-square hcard-arrow"></i>
+      </div>
+      <div class="hcard hcard-tech">
+        <div class="hcard-tech-head">
+          <div class="hcard-icon"><i class="fa-solid fa-globe"></i></div>
+          <span class="hcard-tech-title">TECNOLOGIAS-CHAVE</span>
+          <i class="fa-solid fa-arrow-up-right-from-square hcard-arrow-static"></i>
+        </div>
+        <div class="tech-icon-grid">
+          <div class="ti"><i class="fa-brands fa-python"></i></div>
+          <div class="ti"><i class="fa-solid fa-database"></i></div>
+          <div class="ti"><i class="fa-brands fa-html5"></i></div>
+          <div class="ti"><i class="fa-brands fa-css3-alt"></i></div>
+          <div class="ti"><i class="fa-brands fa-js"></i></div>
+          <div class="ti"><i class="fa-brands fa-github"></i></div>
+          <div class="ti"><i class="fa-brands fa-linux"></i></div>
+          <div class="ti"><i class="fa-brands fa-docker"></i></div>
+          <div class="ti"><i class="fa-brands fa-windows"></i></div>
+          <div class="ti"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <div class="ti"><i class="fa-solid fa-server"></i></div>
+          <div class="ti"><i class="fa-solid fa-brain"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="highlights-row row-4">
+      <div class="hcard hcard-sm">
+        <div class="hcard-icon"><i class="fa-solid fa-user-check"></i></div>
+        <h3>Objetivo</h3>
+        <p>Sistemas que não caem</p>
+        <i class="fa-solid fa-arrow-up-right-from-square hcard-arrow"></i>
+      </div>
+      <div class="hcard hcard-sm">
+        <div class="hcard-icon"><i class="fa-solid fa-code"></i></div>
+        <h3>Foco</h3>
+        <p>Suporte de TI & Infraestrutura</p>
+        <i class="fa-solid fa-arrow-up-right-from-square hcard-arrow"></i>
+      </div>
+      <div class="hcard hcard-sm">
+        <div class="hcard-icon"><i class="fa-solid fa-award"></i></div>
+        <h3>Competências</h3>
+        <p>Python, SQL & Automação</p>
+        <i class="fa-solid fa-arrow-up-right-from-square hcard-arrow"></i>
+      </div>
+      <div class="hcard hcard-sm">
+        <div class="hcard-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Disponibilidade</h3>
+        <p><span class="dot-online-sm"></span> Remoto e freelance</p>
+        <i class="fa-solid fa-arrow-up-right-from-square hcard-arrow"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script src="js/script.js"></script>
+</body>
+</html>
