@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos | Kauê Souza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Kauê Souza</div>
+    <nav class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="projetos.html">Projetos</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro">
+      <i class="fa-solid fa-sun" id="themeIcon"></i>
+    </button>
+  </div>
+</header>
+
+<section class="projects-page">
+  <div class="projects-inner">
+    <div class="projects-head">
+      <h1 id="projHeading">Projetos</h1>
+      <p>Um projeto em produção e dois projetos acadêmicos que mostram como penso: dados, lógica e sistemas que precisam funcionar de verdade.</p>
+    </div>
+
+    <div class="project-list">
+      <div class="pcard">
+        <div class="pcard-icon"><i class="fa-brands fa-python"></i></div>
+        <div class="pcard-body">
+          <h3>Plataforma de Apostas & Tips</h3>
+          <p>Aplicação web em Python (Flask) para publicação de dicas e prognósticos esportivos, com área de conteúdo protegido para assinantes.</p>
+          <div class="pcard-tags"><span>Python</span><span>Flask</span><span>Em produção</span></div>
+        </div>
+        <a href="https://github.com/Kauesouzavr/plataforma-de-aposta-tips" target="_blank" rel="noopener" class="pill pill-blue pcard-action"><i class="fa-brands fa-github"></i> Ver código</a>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="pcard-body">
+          <h3>Sistema de Detecção de Fraudes Financeiras</h3>
+          <p>Trabalho de Conclusão de Curso: solução com Inteligência Artificial para análise de transações financeiras, aplicando conceitos de banco de dados, análise de dados e modelagem de sistemas.</p>
+          <div class="pcard-tags"><span>IA</span><span>SQL</span><span>TCC</span></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-icon"><i class="fa-solid fa-diagram-project"></i></div>
+        <div class="pcard-body">
+          <h3>Árvore Geradora de Custo Mínimo</h3>
+          <p>Implementação dos algoritmos de Kruskal e Prim, aplicando conceitos de Pesquisa Operacional para otimização de redes.</p>
+          <div class="pcard-tags"><span>Algoritmos</span><span>Pesquisa Operacional</span><span>Acadêmico</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/script.js"></script>
+</body>
+</html>
