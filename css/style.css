@@ -192,8 +192,9 @@ h1{
   padding:5px 12px;border-radius:999px;
 }
 .pcard-action{white-space:nowrap;}
+.pcard-actions{display:flex;flex-direction:column;gap:10px;}
 
 @media (max-width:760px){
   .pcard{grid-template-columns:1fr;text-align:left;}
-  .pcard-action{justify-self:start;}
+  .pcard-actions{flex-direction:row;flex-wrap:wrap;justify-self:start;}
 }
