@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projetos | Kauê Souza</title>
+<title>Portfólio | Kauê Souza</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
     <div class="logo">Kauê Souza</div>
     <nav class="nav-links">
       <a href="index.html">Início</a>
-      <a href="projetos.html">Projetos</a>
+      <a href="projetos.html">Portfólio</a>
     </nav>
     <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro">
       <i class="fa-solid fa-sun" id="themeIcon"></i>
@@ -28,37 +28,106 @@
   </div>
 </header>
 
-<section class="projects-page">
-  <div class="projects-inner">
-    <div class="projects-head">
-      <h1 id="projHeading">Projetos</h1>
-      <p>Um projeto em produção e um projeto acadêmico que mostram como penso: dados, lógica e sistemas que precisam funcionar de verdade.</p>
+<section class="portfolio-page">
+  <div class="portfolio-inner">
+    <div class="portfolio-head">
+      <h1 id="projHeading">Portfólio</h1>
+      <p>Explore projetos, certificados e tecnologias que uso no dia a dia.</p>
     </div>
 
-    <div class="project-list">
-      <div class="pcard">
-        <div class="pcard-icon"><i class="fa-brands fa-python"></i></div>
-        <div class="pcard-body">
-          <h3>Plataforma de Apostas & Tips</h3>
-          <p>Aplicação web em Python (Flask) para publicação de dicas e prognósticos esportivos, com área de conteúdo protegido para assinantes.</p>
-          <div class="pcard-tags"><span>Python</span><span>Flask</span><span>Em produção</span></div>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="projetos" role="tab" aria-selected="true">
+        <i class="fa-solid fa-code"></i>
+        <span>Projetos</span>
+      </button>
+      <button class="tab" data-tab="certificados" role="tab" aria-selected="false">
+        <i class="fa-solid fa-award"></i>
+        <span>Certificados</span>
+      </button>
+      <button class="tab" data-tab="stack" role="tab" aria-selected="false">
+        <i class="fa-solid fa-diagram-project"></i>
+        <span>Stack Tecnológica</span>
+      </button>
+    </div>
+
+    <!-- Projetos -->
+    <div class="tab-panel" id="panel-projetos" role="tabpanel">
+      <div class="project-grid">
+        <div class="proj-card">
+          <div class="proj-card-visual"><i class="fa-brands fa-python"></i></div>
+          <div class="proj-card-body">
+            <h3>Plataforma de Apostas & Tips</h3>
+            <p>Aplicação web em Python (Flask) para publicação de dicas e prognósticos esportivos, com área de conteúdo protegido para assinantes.</p>
+            <div class="proj-card-tags"><span>Python</span><span>Flask</span><span>Em produção</span></div>
+            <div class="proj-card-links">
+              <a href="https://curso-yvqf.onrender.com" target="_blank" rel="noopener" class="proj-link">Ver demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://github.com/Kauesouzavr/plataforma-de-aposta-tips" target="_blank" rel="noopener" class="proj-detail-btn">Ver código <i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
         </div>
-        <div class="pcard-actions">
-          <a href="https://github.com/Kauesouzavr/plataforma-de-aposta-tips" target="_blank" rel="noopener" class="pill pill-blue pcard-action"><i class="fa-brands fa-github"></i> Ver código</a>
-          <a href="https://curso-yvqf.onrender.com" target="_blank" rel="noopener" class="pill pill-outline pcard-action"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Site</a>
+
+        <div class="proj-card">
+          <div class="proj-card-visual"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="proj-card-body">
+            <h3>Detecção de Fraudes Financeiras</h3>
+            <p>Trabalho de Conclusão de Curso: solução com Inteligência Artificial para análise de transações financeiras e detecção de padrões anômalos.</p>
+            <div class="proj-card-tags"><span>IA</span><span>SQL</span><span>TCC</span></div>
+            <div class="proj-card-links">
+              <a href="assets/TCC-Deteccao-Fraudes.pdf" target="_blank" rel="noopener" class="proj-detail-btn">Ver TCC <i class="fa-solid fa-file-lines"></i></a>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="pcard">
-        <div class="pcard-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <div class="pcard-body">
-          <h3>Sistema de Detecção de Fraudes Financeiras</h3>
-          <p>Trabalho de Conclusão de Curso: solução com Inteligência Artificial para análise de transações financeiras, aplicando conceitos de banco de dados, análise de dados e modelagem de sistemas.</p>
-          <div class="pcard-tags"><span>IA</span><span>SQL</span><span>TCC</span></div>
+    <!-- Certificados -->
+    <div class="tab-panel" id="panel-certificados" role="tabpanel" hidden>
+      <div class="project-grid">
+        <div class="proj-card">
+          <a href="assets/Diploma-Kaue-Souza.pdf" target="_blank" rel="noopener">
+            <img class="cert-preview-img" src="assets/diploma-preview.jpg" alt="Diploma de Bacharel em Sistemas de Informação de Kauê Souza">
+          </a>
+          <div class="proj-card-body">
+            <h3>Bacharel em Sistemas de Informação</h3>
+            <p>Centro Universitário Geraldo Di Biase (UGB) — Volta Redonda/RJ. Conclusão em dezembro de 2025.</p>
+            <div class="proj-card-tags"><span>Diploma</span><span>UGB</span></div>
+            <div class="proj-card-links">
+              <a href="assets/Diploma-Kaue-Souza.pdf" target="_blank" rel="noopener" class="proj-detail-btn">Ver diploma <i class="fa-solid fa-file-lines"></i></a>
+            </div>
+          </div>
         </div>
-        <div class="pcard-actions">
-          <a href="assets/TCC-Deteccao-Fraudes.pdf" target="_blank" rel="noopener" class="pill pill-outline pcard-action"><i class="fa-solid fa-file-lines"></i> Ver TCC</a>
+
+        <div class="proj-card">
+          <a href="assets/Certificado-Cisco-Cybersecurity.pdf" target="_blank" rel="noopener">
+            <img class="cert-preview-img" src="assets/cert-cisco-preview.jpg" alt="Certificado Cisco Networking Academy - Introduction to Cybersecurity de Kauê Souza">
+          </a>
+          <div class="proj-card-body">
+            <h3>Introduction to Cybersecurity</h3>
+            <p>Cisco Networking Academy. Emitido em agosto de 2026.</p>
+            <div class="proj-card-tags"><span>Cybersecurity</span><span>Cisco</span></div>
+            <div class="proj-card-links">
+              <a href="assets/Certificado-Cisco-Cybersecurity.pdf" target="_blank" rel="noopener" class="proj-detail-btn">Ver certificado <i class="fa-solid fa-file-lines"></i></a>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Stack -->
+    <div class="tab-panel" id="panel-stack" role="tabpanel" hidden>
+      <div class="stack-grid-big">
+        <div class="stack-card-big"><i class="fa-brands fa-python"></i><span>Python</span></div>
+        <div class="stack-card-big"><i class="fa-solid fa-database"></i><span>SQL</span></div>
+        <div class="stack-card-big"><i class="fa-brands fa-html5"></i><span>HTML5</span></div>
+        <div class="stack-card-big"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span></div>
+        <div class="stack-card-big"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+        <div class="stack-card-big"><i class="fa-brands fa-github"></i><span>Git & GitHub</span></div>
+        <div class="stack-card-big"><i class="fa-brands fa-linux"></i><span>Linux</span></div>
+        <div class="stack-card-big"><i class="fa-brands fa-windows"></i><span>Windows Server</span></div>
+        <div class="stack-card-big"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+        <div class="stack-card-big"><i class="fa-solid fa-cloud-arrow-up"></i><span>Vercel</span></div>
+        <div class="stack-card-big"><i class="fa-solid fa-server"></i><span>Render</span></div>
+        <div class="stack-card-big"><i class="fa-solid fa-brain"></i><span>IA / Machine Learning</span></div>
       </div>
     </div>
   </div>
