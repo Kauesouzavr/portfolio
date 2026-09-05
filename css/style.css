@@ -30,13 +30,31 @@ body{
 .nav-links a{color:var(--text-muted);text-decoration:none;font-size:.92rem;transition:color .2s ease;}
 .nav-links a:hover{color:var(--heading);}
 .logo{font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--heading);}
-.theme-toggle{
-  width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:transparent;
-  color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.95rem;
-  transition:border-color .2s ease, transform .2s ease;
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
-.theme-toggle:hover{border-color:var(--heading);transform:translateY(-1px);}
 
+.theme-toggle:hover {
+    transform: translateY(-2px);
+}
+
+.theme-toggle i {
+    font-size: 15px;
+}
+
+.theme-toggle span {
+    font-size: 14px;
+    font-weight: 500;
+}
 .hero{max-width:1180px;margin:0 auto;padding:90px 24px 90px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
 .hero-content{text-align:left;}
 .badge{
@@ -53,6 +71,13 @@ h1{
   font-size:clamp(2.4rem,5.6vw,3.8rem);line-height:1.05;letter-spacing:-.01em;
   margin-bottom:26px;
 }
+
+.hero-role{
+  font-family:var(--font-display);font-weight:400;color:var(--heading);
+  font-size:clamp(1.3rem,2.6vw,1.9rem);margin-bottom:22px;
+}
+.hero-role .cursor{animation:blink 1s step-end infinite;color:var(--blue-2);}
+@keyframes blink{50%{opacity:0;}}
 
 .subtext{
   color:var(--text-muted);font-size:clamp(1rem,1.6vw,1.1rem);line-height:1.6;

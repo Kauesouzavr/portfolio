@@ -1,11 +1,21 @@
-// Theme toggle (in-memory only) — present on every page
+// Theme toggle
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
+const themeText = document.getElementById('themeText');
 const root = document.documentElement;
+
 themeToggle.addEventListener('click', () => {
   const isLight = root.getAttribute('data-theme') === 'light';
+
   root.setAttribute('data-theme', isLight ? 'dark' : 'light');
-  themeIcon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+
+  if (isLight) {
+    themeIcon.className = 'fa-solid fa-moon';
+    themeText.textContent = 'Escuro';
+  } else {
+    themeIcon.className = 'fa-solid fa-sun';
+    themeText.textContent = 'Claro';
+  }
 });
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -141,4 +151,39 @@ if (document.getElementById('projHeading')) {
       y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out', delay: 0.55
     });
   });
+}
+// ---- Typewriter effect (loop infinito) ----
+const typewriterEl = document.getElementById('typewriter');
+if (typewriterEl) {
+  const roles = ['Desenvolvedor Full Stack'];
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    typewriterEl.textContent = roles[0];
+  } else {
+    let roleIndex = 0, charIndex = 0, deleting = false;
+    function typeLoop() {
+      const current = roles[roleIndex % roles.length];
+      if (!deleting) {
+        charIndex++;
+        typewriterEl.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1800);
+          return;
+        }
+      } else {
+        charIndex--;
+        typewriterEl.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex++;
+          setTimeout(typeLoop, 400);
+          return;
+        }
+      }
+      setTimeout(typeLoop, deleting ? 45 : 90);
+    }
+    typeLoop();
+  }
 }
