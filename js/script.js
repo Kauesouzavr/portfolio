@@ -69,7 +69,33 @@ if (document.getElementById('aboutHeading')) {
   });
 }
 
-// ---- Projects page only: heading + card entrance ----
+// ---- Home page only: embedded Portfolio section (scroll-triggered, since it's not at the very top) ----
+if (document.getElementById('homePortfolioHeading')) {
+  document.fonts.ready.then(() => {
+    const homePortSplit = new SplitText('#homePortfolioHeading', { type: 'chars' });
+    gsap.from(homePortSplit.chars, {
+      yPercent: 120, opacity: 0, duration: 0.7, stagger: 0.02, ease: 'power4.out',
+      scrollTrigger: { trigger: '#homePortfolioHeading', start: 'top 85%' }
+    });
+
+    gsap.from('#portfolio .portfolio-head p', {
+      y: 16, opacity: 0, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '#portfolio .portfolio-head p', start: 'top 90%' }
+    });
+
+    gsap.from('#portfolio .tabs', {
+      y: 16, opacity: 0, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '#portfolio .tabs', start: 'top 90%' }
+    });
+
+    gsap.from('#panel-projetos .proj-card', {
+      y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '#panel-projetos', start: 'top 85%' }
+    });
+  });
+}
+
+// ---- Projects/Portfolio page only: heading entrance ----
 if (document.getElementById('projHeading')) {
   document.fonts.ready.then(() => {
     const projSplit = new SplitText('#projHeading', { type: 'chars' });
@@ -77,10 +103,31 @@ if (document.getElementById('projHeading')) {
       yPercent: 120, opacity: 0, duration: 0.7, stagger: 0.02, ease: 'power4.out'
     });
 
-    gsap.from('.projects-head p', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 });
-
-    gsap.from('.pcard', {
-      y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out', delay: 0.45
+    gsap.from('.portfolio-head p', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 });
+    gsap.from('.tabs', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.4 });
+    gsap.from('#panel-projetos .proj-card', {
+      y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out', delay: 0.55
     });
   });
 }
+
+// ---- Portfolio page only: tab switching ----
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.tab-panel');
+tabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    if (tab.classList.contains('active')) return;
+    tabs.forEach((t) => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    const target = tab.dataset.tab;
+    panels.forEach((p) => {
+      if (p.id === 'panel-' + target) {
+        p.hidden = false;
+        gsap.fromTo(p, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+      } else {
+        p.hidden = true;
+      }
+    });
+  });
+});
