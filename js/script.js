@@ -111,23 +111,34 @@ if (document.getElementById('projHeading')) {
   });
 }
 
-// ---- Portfolio page only: tab switching ----
-const tabs = document.querySelectorAll('.tab');
-const panels = document.querySelectorAll('.tab-panel');
-tabs.forEach((tab) => {
-  tab.addEventListener('click', () => {
-    if (tab.classList.contains('active')) return;
-    tabs.forEach((t) => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-    tab.classList.add('active');
-    tab.setAttribute('aria-selected', 'true');
-    const target = tab.dataset.tab;
-    panels.forEach((p) => {
-      if (p.id === 'panel-' + target) {
-        p.hidden = false;
-        gsap.fromTo(p, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-      } else {
-        p.hidden = true;
-      }
+// ---- Projects/Portfolio page only: heading entrance ----
+if (document.getElementById('projHeading')) {
+  document.fonts.ready.then(() => {
+    const projSplit = new SplitText('#projHeading', { type: 'chars' });
+    gsap.from(projSplit.chars, {
+      yPercent: 120, opacity: 0, duration: 0.7, stagger: 0.02, ease: 'power4.out'
+    });
+
+    gsap.from('.portfolio-head p', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 });
+    gsap.from('.tabs', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.4 });
+    gsap.from('#panel-projetos .proj-card', {
+      y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out', delay: 0.55
     });
   });
-});
+}
+
+// ---- Projects/Portfolio page only: heading entrance ----
+if (document.getElementById('projHeading')) {
+  document.fonts.ready.then(() => {
+    const projSplit = new SplitText('#projHeading', { type: 'chars' });
+    gsap.from(projSplit.chars, {
+      yPercent: 120, opacity: 0, duration: 0.7, stagger: 0.02, ease: 'power4.out'
+    });
+
+    gsap.from('.portfolio-head p', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 });
+    gsap.from('.tabs', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.4 });
+    gsap.from('#panel-projetos .proj-card', {
+      y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out', delay: 0.55
+    });
+  });
+}
