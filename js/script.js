@@ -1,21 +1,11 @@
-// Theme toggle
+// Theme toggle (in-memory only) — present on every page
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
-const themeText = document.getElementById('themeText');
 const root = document.documentElement;
-
 themeToggle.addEventListener('click', () => {
   const isLight = root.getAttribute('data-theme') === 'light';
-
   root.setAttribute('data-theme', isLight ? 'dark' : 'light');
-
-  if (isLight) {
-    themeIcon.className = 'fa-solid fa-moon';
-    themeText.textContent = 'Escuro';
-  } else {
-    themeIcon.className = 'fa-solid fa-sun';
-    themeText.textContent = 'Claro';
-  }
+  themeIcon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 });
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -105,18 +95,16 @@ if (document.getElementById('homePortfolioHeading')) {
   });
 }
 
-// ---- Projects/Portfolio page only: heading entrance ----
-if (document.getElementById('projHeading')) {
+// ---- Home page only: Contact section ----
+if (document.getElementById('contactHeading')) {
   document.fonts.ready.then(() => {
-    const projSplit = new SplitText('#projHeading', { type: 'chars' });
-    gsap.from(projSplit.chars, {
-      yPercent: 120, opacity: 0, duration: 0.7, stagger: 0.02, ease: 'power4.out'
+    gsap.from('#contactHeading', {
+      y: 20, opacity: 0, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: '#contactHeading', start: 'top 85%' }
     });
-
-    gsap.from('.portfolio-head p', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 });
-    gsap.from('.tabs', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.4 });
-    gsap.from('#panel-projetos .proj-card', {
-      y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out', delay: 0.55
+    gsap.from('.contact-inner p, .contact-actions', {
+      y: 18, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '.contact-inner p', start: 'top 88%' }
     });
   });
 }
@@ -137,53 +125,23 @@ if (document.getElementById('projHeading')) {
   });
 }
 
-// ---- Projects/Portfolio page only: heading entrance ----
-if (document.getElementById('projHeading')) {
-  document.fonts.ready.then(() => {
-    const projSplit = new SplitText('#projHeading', { type: 'chars' });
-    gsap.from(projSplit.chars, {
-      yPercent: 120, opacity: 0, duration: 0.7, stagger: 0.02, ease: 'power4.out'
-    });
-
-    gsap.from('.portfolio-head p', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 });
-    gsap.from('.tabs', { y: 16, opacity: 0, duration: 0.6, ease: 'power3.out', delay: 0.4 });
-    gsap.from('#panel-projetos .proj-card', {
-      y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out', delay: 0.55
-    });
-  });
-}
-// ---- Typewriter effect (loop infinito) ----
-const typewriterEl = document.getElementById('typewriter');
-if (typewriterEl) {
-  const roles = ['Desenvolvedor Full Stack'];
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion) {
-    typewriterEl.textContent = roles[0];
-  } else {
-    let roleIndex = 0, charIndex = 0, deleting = false;
-    function typeLoop() {
-      const current = roles[roleIndex % roles.length];
-      if (!deleting) {
-        charIndex++;
-        typewriterEl.textContent = current.slice(0, charIndex);
-        if (charIndex === current.length) {
-          deleting = true;
-          setTimeout(typeLoop, 1800);
-          return;
-        }
+// ---- Portfolio page only: tab switching ----
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.tab-panel');
+tabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    if (tab.classList.contains('active')) return;
+    tabs.forEach((t) => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    const target = tab.dataset.tab;
+    panels.forEach((p) => {
+      if (p.id === 'panel-' + target) {
+        p.hidden = false;
+        gsap.fromTo(p, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
       } else {
-        charIndex--;
-        typewriterEl.textContent = current.slice(0, charIndex);
-        if (charIndex === 0) {
-          deleting = false;
-          roleIndex++;
-          setTimeout(typeLoop, 400);
-          return;
-        }
+        p.hidden = true;
       }
-      setTimeout(typeLoop, deleting ? 45 : 90);
-    }
-    typeLoop();
-  }
-}
+    });
+  });
+});

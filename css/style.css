@@ -259,3 +259,13 @@ h1{
   .tabs{padding:5px;}
   .stack-grid-big{grid-template-columns:repeat(2,1fr);}
 }
+
+/* ---- Contact (recruiter-facing, end of page) ---- */
+.contact{padding:100px 0 110px;border-top:1px solid var(--border);}
+.contact-inner{max-width:720px;margin:0 auto;padding:0 24px;text-align:center;}
+.contact-inner h2{font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,4.6vw,3rem);color:var(--heading);margin-bottom:16px;}
+.contact-inner p{color:var(--text-muted);max-width:520px;margin:0 auto 36px;line-height:1.6;}
+.contact-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;}
+
+.site-footer{border-top:1px solid var(--border);padding:24px;text-align:center;}
+.site-footer p{color:var(--text-muted);font-size:.82rem;}
