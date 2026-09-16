@@ -145,3 +145,40 @@ tabs.forEach((tab) => {
     });
   });
 });
+
+// ---- Typewriter effect (loop infinito) ----
+const typewriterEl = document.getElementById('typewriter');
+if (typewriterEl) {
+  const roles = ['Desenvolvedor Full Stack'];
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    typewriterEl.textContent = roles[0];
+  } else {
+    let roleIndex = 0, charIndex = 0, deleting = false;
+    function typeLoop() {
+      const current = roles[roleIndex % roles.length];
+      if (!deleting) {
+        charIndex++;
+        typewriterEl.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1800);
+          return;
+        }
+      } else {
+        charIndex--;
+        typewriterEl.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex++;
+          setTimeout(typeLoop, 400);
+          return;
+        }
+      }
+      setTimeout(typeLoop, deleting ? 45 : 90);
+    }
+    typeLoop();
+  }
+}
+

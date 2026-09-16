@@ -269,3 +269,11 @@ h1{
 
 .site-footer{border-top:1px solid var(--border);padding:24px;text-align:center;}
 .site-footer p{color:var(--text-muted);font-size:.82rem;}
+
+.logo-group{display:flex;align-items:center;gap:18px;}
+.social-icons{display:flex;align-items:center;gap:14px;}
+.social-icons a{color:var(--text-muted);font-size:1rem;transition:color .2s ease;}
+.social-icons a:hover{color:var(--heading);}
+@media (max-width:640px){
+  .social-icons{display:none;}
+}
