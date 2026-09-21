@@ -8,10 +8,16 @@ themeToggle.addEventListener('click', () => {
   themeIcon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 });
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+let gsapReady = true;
+try {
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+} catch (e) {
+  gsapReady = false;
+  console.warn('GSAP não carregou — animações desativadas, mas o site continua funcional.', e);
+}
 
 // ---- Home page only: hero entrance ----
-if (document.getElementById('heading')) {
+if (document.getElementById('heading') && gsapReady) {
   gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.8 } })
     .from('#badge', { opacity: 0, y: 14 }, 0.1)
     .from('#heading', { opacity: 0, y: 20 }, 0.25)
@@ -22,7 +28,7 @@ if (document.getElementById('heading')) {
 }
 
 // ---- Home page only: hero illustration (loaded from assets/computer-animation.json) ----
-if (document.getElementById('rocket')) {
+if (document.getElementById('rocket') && typeof lottie !== 'undefined') {
   lottie.loadAnimation({
     container: document.getElementById('rocket'),
     renderer: 'svg',
@@ -33,7 +39,7 @@ if (document.getElementById('rocket')) {
 }
 
 // ---- Home page only: About + Highlights scroll animations ----
-if (document.getElementById('aboutHeading')) {
+if (document.getElementById('aboutHeading') && gsapReady) {
   document.fonts.ready.then(() => {
     const headingSplit = new SplitText('#aboutHeading', { type: 'chars' });
     gsap.from(headingSplit.chars, {
@@ -70,7 +76,7 @@ if (document.getElementById('aboutHeading')) {
 }
 
 // ---- Home page only: embedded Portfolio section (scroll-triggered, since it's not at the very top) ----
-if (document.getElementById('homePortfolioHeading')) {
+if (document.getElementById('homePortfolioHeading') && gsapReady) {
   document.fonts.ready.then(() => {
     const homePortSplit = new SplitText('#homePortfolioHeading', { type: 'chars' });
     gsap.from(homePortSplit.chars, {
@@ -96,7 +102,7 @@ if (document.getElementById('homePortfolioHeading')) {
 }
 
 // ---- Home page only: Contact section ----
-if (document.getElementById('contactHeading')) {
+if (document.getElementById('contactHeading') && gsapReady) {
   document.fonts.ready.then(() => {
     gsap.from('#contactHeading', {
       y: 20, opacity: 0, duration: 0.7, ease: 'power3.out',
@@ -110,7 +116,7 @@ if (document.getElementById('contactHeading')) {
 }
 
 // ---- Projects/Portfolio page only: heading entrance ----
-if (document.getElementById('projHeading')) {
+if (document.getElementById('projHeading') && gsapReady) {
   document.fonts.ready.then(() => {
     const projSplit = new SplitText('#projHeading', { type: 'chars' });
     gsap.from(projSplit.chars, {
@@ -138,7 +144,9 @@ tabs.forEach((tab) => {
     panels.forEach((p) => {
       if (p.id === 'panel-' + target) {
         p.hidden = false;
-        gsap.fromTo(p, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+        if (gsapReady) {
+          gsap.fromTo(p, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+        }
       } else {
         p.hidden = true;
       }
@@ -181,4 +189,3 @@ if (typewriterEl) {
     typeLoop();
   }
 }
-
