@@ -44,33 +44,33 @@ if (document.getElementById('aboutHeading') && gsapReady) {
     const headingSplit = new SplitText('#aboutHeading', { type: 'chars' });
     gsap.from(headingSplit.chars, {
       yPercent: 120, opacity: 0, duration: 0.7, stagger: 0.02, ease: 'power4.out',
-      scrollTrigger: { trigger: '#aboutHeading', start: 'top 85%' }
+      scrollTrigger: { trigger: '#aboutHeading', start: 'top 85%', toggleActions: 'restart reverse restart reverse' }
     });
 
     const nameSplit = new SplitText('.about-name', { type: 'chars' });
     gsap.from(nameSplit.chars, {
       yPercent: 120, opacity: 0, duration: 0.6, stagger: 0.02, ease: 'power4.out',
-      scrollTrigger: { trigger: '.about-name', start: 'top 85%' }
+      scrollTrigger: { trigger: '.about-name', start: 'top 85%', toggleActions: 'restart reverse restart reverse' }
     });
 
     gsap.from('.about-subtitle', {
       y: 16, opacity: 0, duration: 0.6, ease: 'power3.out',
-      scrollTrigger: { trigger: '.about-subtitle', start: 'top 90%' }
+      scrollTrigger: { trigger: '.about-subtitle', start: 'top 90%', toggleActions: 'restart reverse restart reverse' }
     });
 
     gsap.from('.about-greeting, .about-bio, .about-actions', {
       y: 20, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.about-grid', start: 'top 78%' }
+      scrollTrigger: { trigger: '.about-grid', start: 'top 78%', toggleActions: 'restart reverse restart reverse' }
     });
 
     gsap.from('.about-photo-wrap', {
       scale: 0.85, opacity: 0, duration: 0.9, ease: 'back.out(1.4)',
-      scrollTrigger: { trigger: '.about-photo-wrap', start: 'top 80%' }
+      scrollTrigger: { trigger: '.about-photo-wrap', start: 'top 80%', toggleActions: 'restart reverse restart reverse' }
     });
 
     gsap.from('.hcard', {
       y: 24, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out',
-      scrollTrigger: { trigger: '.highlights', start: 'top 82%' }
+      scrollTrigger: { trigger: '.highlights', start: 'top 82%', toggleActions: 'restart reverse restart reverse' }
     });
   });
 }
@@ -81,22 +81,22 @@ if (document.getElementById('homePortfolioHeading') && gsapReady) {
     const homePortSplit = new SplitText('#homePortfolioHeading', { type: 'chars' });
     gsap.from(homePortSplit.chars, {
       yPercent: 120, opacity: 0, duration: 0.7, stagger: 0.02, ease: 'power4.out',
-      scrollTrigger: { trigger: '#homePortfolioHeading', start: 'top 85%' }
+      scrollTrigger: { trigger: '#homePortfolioHeading', start: 'top 85%', toggleActions: 'restart reverse restart reverse' }
     });
 
     gsap.from('#portfolio .portfolio-head p', {
       y: 16, opacity: 0, duration: 0.6, ease: 'power3.out',
-      scrollTrigger: { trigger: '#portfolio .portfolio-head p', start: 'top 90%' }
+      scrollTrigger: { trigger: '#portfolio .portfolio-head p', start: 'top 90%', toggleActions: 'restart reverse restart reverse' }
     });
 
     gsap.from('#portfolio .tabs', {
       y: 16, opacity: 0, duration: 0.6, ease: 'power3.out',
-      scrollTrigger: { trigger: '#portfolio .tabs', start: 'top 90%' }
+      scrollTrigger: { trigger: '#portfolio .tabs', start: 'top 90%', toggleActions: 'restart reverse restart reverse' }
     });
 
     gsap.from('#panel-projetos .proj-card', {
       y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '#panel-projetos', start: 'top 85%' }
+      scrollTrigger: { trigger: '#panel-projetos', start: 'top 85%', toggleActions: 'restart reverse restart reverse' }
     });
   });
 }
@@ -106,11 +106,11 @@ if (document.getElementById('contactHeading') && gsapReady) {
   document.fonts.ready.then(() => {
     gsap.from('#contactHeading', {
       y: 20, opacity: 0, duration: 0.7, ease: 'power3.out',
-      scrollTrigger: { trigger: '#contactHeading', start: 'top 85%' }
+      scrollTrigger: { trigger: '#contactHeading', start: 'top 85%', toggleActions: 'restart reverse restart reverse' }
     });
     gsap.from('.contact-inner p, .contact-actions', {
       y: 18, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.contact-inner p', start: 'top 88%' }
+      scrollTrigger: { trigger: '.contact-inner p', start: 'top 88%', toggleActions: 'restart reverse restart reverse' }
     });
   });
 }

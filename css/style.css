@@ -143,15 +143,15 @@ h1{
 /* ---- Highlights / stat cards ---- */
 .highlights{padding:0 0 120px;}
 .highlights-inner{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:20px;}
-.highlights-row{display:grid;gap:20px;}
+.highlights-row{display:grid;gap:20px;align-items:stretch;}
 .row-2{grid-template-columns:1fr 1fr;}
 .row-4{grid-template-columns:repeat(4,1fr);}
 
 .hcard{
   position:relative;background:var(--surface);border:1px solid var(--border);border-radius:20px;
-  padding:28px;min-height:190px;display:flex;flex-direction:column;
+  padding:28px;min-height:190px;display:flex;flex-direction:column;align-self:stretch;
 }
-.hcard-link{text-decoration:none;color:inherit;transition:transform .2s ease, border-color .2s ease;}
+.hcard-link{display:flex;flex-direction:column;align-self:stretch;text-decoration:none;color:inherit;transition:transform .2s ease, border-color .2s ease;}
 .hcard-link:hover{transform:translateY(-4px);border-color:var(--blue-2);}
 .hcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:34px;}
 .hcard-icon{
