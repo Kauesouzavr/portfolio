@@ -163,9 +163,11 @@ if (document.getElementById('homePortfolioHeading') && gsapReady) {
     });
 
     // Triggered by the tab bar (always visible) instead of the panel: the panel can be hidden when another tab is open.
+    // Plays once and stays: with 'reverse' on leave, the cards faded out as soon as the (short) tab bar scrolled off the top
+    // of the screen, even though the cards below it were still being read.
     gsap.from('#panel-projetos .proj-card', {
       y: 24, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '#portfolio .tabs', start: 'top 75%', toggleActions: 'restart reverse restart reverse' }
+      scrollTrigger: { trigger: '#portfolio .tabs', start: 'top 75%', toggleActions: 'play none none none' }
     });
   });
 }
@@ -177,9 +179,11 @@ if (document.getElementById('contactHeading') && gsapReady) {
       y: 20, opacity: 0, duration: 0.7, ease: 'power3.out',
       scrollTrigger: { trigger: '#contactHeading', start: 'top 85%', toggleActions: 'restart reverse restart reverse' }
     });
+    // Plays once and stays: with 'reverse' on leave, the buttons and e-mail faded out on phones once the paragraph above them
+    // scrolled off the top of the screen, while they were still visible at the bottom of the page.
     gsap.from('.contact-inner > p, .contact-actions, .contact-mail', {
       y: 18, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.contact-inner > p', start: 'top 88%', toggleActions: 'restart reverse restart reverse' }
+      scrollTrigger: { trigger: '.contact-inner > p', start: 'top 88%', toggleActions: 'play none none none' }
     });
   });
 }
@@ -310,3 +314,65 @@ function equalizeRow2Cards() {
 }
 window.addEventListener('load', equalizeRow2Cards);
 window.addEventListener('resize', equalizeRow2Cards);
+
+// ---- "Mais fodas" v2 — bigger, always-visible effects ----
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  // 1) Glowing cursor trail — the one effect visible everywhere, immediately,
+  // without needing to hover any specific element.
+  if (matchMedia('(pointer: fine)').matches) {
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+    let gx = innerWidth / 2, gy = innerHeight / 2, tx = gx, ty = gy;
+    window.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; });
+    (function raf() {
+      gx += (tx - gx) * 0.14;
+      gy += (ty - gy) * 0.14;
+      glow.style.transform = `translate(${gx.toFixed(1)}px, ${gy.toFixed(1)}px)`;
+      requestAnimationFrame(raf);
+    })();
+  }
+
+  // 2) Cursor-reactive parallax on the animated background (bigger range than v1)
+  const bgFx = document.querySelector('.bg-fx');
+  if (bgFx) {
+    window.addEventListener('mousemove', (e) => {
+      const dx = e.clientX / innerWidth - 0.5;
+      const dy = e.clientY / innerHeight - 0.5;
+      bgFx.style.transform = `translate(${(dx * 38).toFixed(1)}px, ${(dy * 38).toFixed(1)}px)`;
+    });
+  }
+
+  // 3) 3D tilt on cards — wider angle + a glow that follows the tilt direction
+  // (excludes .about-photo-wrap: it already animates `transform` via `photo-float`)
+  document.querySelectorAll('.hcard, .proj-card').forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = `perspective(600px) rotateX(${(-py * 16).toFixed(2)}deg) rotateY(${(px * 16).toFixed(2)}deg) scale(1.02)`;
+      el.style.setProperty('--glow-x', `${((px + 0.5) * 100).toFixed(0)}%`);
+      el.style.setProperty('--glow-y', `${((py + 0.5) * 100).toFixed(0)}%`);
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+
+  // 4) Magnetic pull on the hero pills — wider range than v1
+  document.querySelectorAll('.pill').forEach((pill) => {
+    pill.addEventListener('mousemove', (e) => {
+      const r = pill.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      pill.style.transform = `translate(${(px * 16).toFixed(1)}px, ${(py * 12).toFixed(1)}px)`;
+    });
+    pill.addEventListener('mouseleave', () => { pill.style.transform = ''; });
+  });
+
+  // 5) Animated gradient sweep + glow on the H1 and the typewriter role —
+  // always running, no hover required
+  document.getElementById('heading')?.classList.add('fx-gradient');
+  document.querySelector('.hero-role')?.classList.add('fx-glow-blue');
+})();

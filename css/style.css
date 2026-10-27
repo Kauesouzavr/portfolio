@@ -188,6 +188,8 @@ h1{
   transition:translate .2s ease, border-color .2s ease;
 }
 .tech-badge:hover{translate:0 -4px;border-color:var(--accent);}
+.tech-badge img{width:22px;height:22px;display:block;filter:invert(1);}
+[data-theme="light"] .tech-badge img{filter:none;}
 
 .hero-visual{position:relative;isolation:isolate;}
 .hero-visual::before{
@@ -371,6 +373,8 @@ h1{
 }
 .stack-card-big:hover{translate:0 -4px;border-color:var(--accent);}
 .stack-card-big i{font-size:1.8rem;color:var(--heading);}
+.stack-card-big img{width:30px;height:30px;display:block;filter:invert(1);}
+[data-theme="light"] .stack-card-big img{filter:none;}
 .stack-card-big span{font-size:.82rem;color:var(--text-muted);font-weight:600;}
 
 @media (max-width:1000px){
@@ -438,4 +442,67 @@ h1{
 @media (max-width:480px){
   .footer-inner{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;align-items:flex-start;}
+}
+
+/* ---- "Mais fodas" v2 — bigger, always-visible effects ---- */
+
+/* Glowing cursor trail */
+.cursor-glow{
+  position:fixed;top:0;left:0;width:360px;height:360px;margin:-180px 0 0 -180px;
+  border-radius:50%;pointer-events:none;z-index:999;will-change:transform;
+  background:radial-gradient(circle, rgba(59,124,255,.15), rgba(155,92,246,.06) 45%, transparent 70%);
+  mix-blend-mode:screen;
+}
+[data-theme="light"] .cursor-glow{
+  background:radial-gradient(circle, rgba(47,95,214,.11), rgba(155,92,246,.05) 45%, transparent 70%);
+  mix-blend-mode:normal;
+}
+
+/* Animated gradient sweep on the H1 (replaces the static gradient fill) */
+#heading.fx-gradient{
+  background:linear-gradient(100deg, var(--heading) 0%, var(--accent) 22%, #9B5CF6 40%, var(--accent) 58%, var(--heading) 80%, var(--accent) 100%);
+  background-size:260% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:fxGradientShift 4.5s ease-in-out infinite, fxGlowPulse 3.4s ease-in-out infinite;
+}
+@keyframes fxGradientShift{
+  0%,100%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+}
+@keyframes fxGlowPulse{
+  0%,100% { text-shadow: 0 0 16px rgba(59,124,255,.30), 0 0 2px rgba(59,124,255,.18); }
+  50%     { text-shadow: 0 0 40px rgba(124,156,255,.75), 0 0 12px rgba(59,124,255,.5); }
+}
+.fx-glow-blue{ animation:fxGlowPulse 2.1s ease-in-out infinite; }
+
+/* Background parallax + card/pill transitions */
+.bg-fx{ transition:transform .2s ease-out; }
+/* .hcard/.proj-card keep `will-change` for the JS tilt effect below, but NOT a `transition:transform`:
+   GSAP animates these two via `transform` for the scroll-in entrance (see script.js), and a CSS
+   transition on that same property fights it, leaving cards stuck mid-animation (translateY(24px) —
+   the exact "Projetos" misalignment bug fixed earlier in this file). Their own hover-lift transition
+   already uses `translate` instead (see their base rules above), which doesn't conflict.
+   .pill isn't GSAP-animated via transform, so it's free to transition it smoothly (magnetic pull). */
+.hcard, .proj-card, .pill{ will-change:transform; }
+.pill{ transition:transform .15s ease-out, box-shadow .2s ease-out; }
+
+/* Cursor-follow glow on card hover, on top of the existing border/lift hover */
+.hcard, .proj-card{ --glow-x:50%; --glow-y:50%; }
+.hcard:hover, .proj-card:hover{
+  box-shadow:0 0 0 1px var(--accent), 0 18px 46px -16px var(--card-glow),
+    radial-gradient(260px circle at var(--glow-x) var(--glow-y), rgba(124,156,255,.16), transparent 70%);
+}
+
+/* Shine sweep across pills on hover */
+.pill{ position:relative; overflow:hidden; }
+.pill::after{
+  content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(115deg, transparent, rgba(255,255,255,.4), transparent);
+  transform:skewX(-20deg);transition:left .55s ease;
+  pointer-events:none;
+}
+.pill:hover::after{ left:130%; }
+
+@media (max-width:640px){
+  .cursor-glow{ display:none; } /* no hover/cursor on touch */
 }
