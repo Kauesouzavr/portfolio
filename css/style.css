@@ -340,6 +340,8 @@ h1{
 }
 .proj-card:hover{translate:0 -4px;border-color:var(--accent);box-shadow:0 18px 38px -18px var(--card-glow);}
 .proj-card-visual{height:140px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--heading);background:rgba(127,127,127,.08);}
+.proj-preview-img{width:100%;height:140px;object-fit:cover;object-position:top;display:block;cursor:pointer;transition:opacity .2s ease;}
+.proj-preview-img:hover{opacity:.88;}
 .cert-preview-img{width:100%;height:200px;object-fit:cover;object-position:top;display:block;cursor:pointer;transition:opacity .2s ease;}
 .cert-preview-img:hover{opacity:.88;}
 .proj-card-body{padding:26px;display:flex;flex-direction:column;flex:1;}
